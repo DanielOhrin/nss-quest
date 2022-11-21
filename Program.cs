@@ -32,7 +32,11 @@ namespace Quest
 ",
                 4, 20
             );
+            Challenge howOld = new Challenge("How old am I?", 1000, 50);
+            Challenge howManyKids = new Challenge("How many children do I have?", 21, 25);
+            Challenge whatYear = new Challenge("What year was I born?", DateTime.Now.Year - 1000, 50);
 
+            List<Challenge> allChallenges = new List<Challenge> { twoPlusTwo, theAnswer, whatSecond, guessRandom, favoriteBeatle, howOld, howManyKids, whatYear };
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
 
@@ -66,18 +70,32 @@ namespace Quest
 
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-                List<Challenge> challenges = new List<Challenge>()
-            {
-                twoPlusTwo,
-                theAnswer,
-                whatSecond,
-                guessRandom,
-                favoriteBeatle
-            };
+
+                // Get 5 random challenges
+                Random r = new Random();
+                List<byte> challengeIndexes = new List<byte>();
+
+                while (challengeIndexes.Count < 5)
+                {
+                    byte randomByte = Convert.ToByte(r.Next(0, allChallenges.Count - 1));
+
+                    if (challengeIndexes.IndexOf(randomByte) == -1)
+                    {
+                        challengeIndexes.Add(randomByte);
+                    }
+                }
+
+                // Execute those challenges
+                List<Challenge> challenges = new List<Challenge>();
+                foreach (byte index in challengeIndexes)
+                {
+                    challenges.Add(allChallenges[index]);
+                }
 
                 // Loop through all the challenges and subject the Adventurer to them
                 foreach (Challenge challenge in challenges)
                 {
+                    Console.WriteLine();
                     challenge.RunChallenge(theAdventurer);
                 }
 
