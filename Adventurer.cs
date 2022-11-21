@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Quest
 {
     // An instance of the Adventurer class is an object that will undergo some challenges
@@ -12,11 +14,14 @@ namespace Quest
         //  So it can be read and changed by any code in the application
         public int Awesomeness { get; set; }
 
+        public Robe ColorfulRobe { get; }
+
         // A constructor to make a new Adventurer object with a given name
-        public Adventurer(string name)
+        public Adventurer(string name, Robe robe)
         {
             Name = name;
             Awesomeness = 50;
+            ColorfulRobe = robe;
         }
 
 
@@ -44,6 +49,34 @@ namespace Quest
             }
 
             return $"Adventurer, {Name}, is {status}";
+        }
+
+        private string GetColorString()
+        {
+            StringBuilder colorString = new StringBuilder();
+
+            foreach (string color in ColorfulRobe.Colors)
+            {
+                // .ToLower() to ensure a uniform format
+                if (ColorfulRobe.Colors.IndexOf(color) == ColorfulRobe.Colors.Count - 1)
+                {
+                    colorString.Append($" and {color}");
+                }
+                else if (ColorfulRobe.Colors.IndexOf(color) == 0)
+                {
+                    colorString.Append($"{color},");
+                }
+                else
+                {
+                    colorString.Append($" {color},");
+                }
+            }
+
+            return colorString.ToString();
+        }
+        public string GetDescription()
+        {
+            return $"{Name} is wearing a {GetColorString()} robe that is {ColorfulRobe.Length} inches long.";
         }
     }
 }
