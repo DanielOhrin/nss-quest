@@ -43,6 +43,11 @@ namespace Quest
             // Here we set some reasonable min and max values.
             //  If an Adventurer has an Awesomeness greater than the max, they are truly awesome
             //  If an Adventurer has an Awesomeness less than the min, they are terrible
+
+            // Populated if user REPEATS a quest
+            int initialAwesomeness = 0;
+
+
             //! Add option to repeat adventure
             bool isDone = false;
             while (!isDone)
@@ -66,6 +71,7 @@ namespace Quest
 
                 Console.Write("What is your name, noble adventurer? ");
                 Adventurer theAdventurer = new Adventurer(Console.ReadLine(), theRobe, theHat);
+                theAdventurer.Awesomeness += initialAwesomeness;
                 Console.WriteLine(theAdventurer.GetDescription());
 
                 // A list of challenges for the Adventurer to complete
@@ -96,7 +102,7 @@ namespace Quest
                 foreach (Challenge challenge in challenges)
                 {
                     Console.WriteLine();
-                    challenge.RunChallenge(theAdventurer);
+                    initialAwesomeness += challenge.RunChallenge(theAdventurer);
                 }
 
                 // This code examines how Awesome the Adventurer is after completing the challenges
