@@ -53,9 +53,13 @@ namespace Quest
                     Colors = new List<string> { "red", "blue", "purple", "green", "yellow", "white", "black" },
                     Length = 12
                 };
+                Hat theHat = new Hat()
+                {
+                    ShininessLevel = 7
+                };
 
                 Console.Write("What is your name, noble adventurer? ");
-                Adventurer theAdventurer = new Adventurer(Console.ReadLine(), theRobe);
+                Adventurer theAdventurer = new Adventurer(Console.ReadLine(), theRobe, theHat);
                 Console.WriteLine(theAdventurer.GetDescription());
 
                 // A list of challenges for the Adventurer to complete
