@@ -58,6 +58,8 @@ namespace Quest
                     ShininessLevel = 7
                 };
 
+                Prize thePrize = new Prize();
+
                 Console.Write("What is your name, noble adventurer? ");
                 Adventurer theAdventurer = new Adventurer(Console.ReadLine(), theRobe, theHat);
                 Console.WriteLine(theAdventurer.GetDescription());
@@ -93,6 +95,8 @@ namespace Quest
                 {
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
+
+                Console.WriteLine(thePrize.ShowPrize(theAdventurer));
 
                 Console.WriteLine();
                 Console.Write("Would you like to partake in another adventure? (Y | N): ");
