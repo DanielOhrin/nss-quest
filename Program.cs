@@ -64,7 +64,7 @@ namespace Quest
                 };
                 Hat theHat = new Hat()
                 {
-                    ShininessLevel = 7
+                    ShininessLevel = new Random().Next(0, 11)
                 };
 
                 Prize thePrize = new Prize();

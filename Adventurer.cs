@@ -59,7 +59,6 @@ namespace Quest
 
             foreach (string color in ColorfulRobe.Colors)
             {
-                // .ToLower() to ensure a uniform format
                 if (ColorfulRobe.Colors.IndexOf(color) == ColorfulRobe.Colors.Count - 1)
                 {
                     colorString.Append($" and {color}");
